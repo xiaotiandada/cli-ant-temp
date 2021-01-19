@@ -23,8 +23,10 @@
   },
   "dependencies": {
     "egg": "^2.6.1",
+    "egg-cors": "^2.2.3",
     "egg-scripts": "^2.6.0",
-    "egg-session": "^3.2.0"
+    "egg-session": "^3.2.0",
+    "jwt-simple": "^0.5.6"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.40",

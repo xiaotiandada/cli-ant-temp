@@ -6,9 +6,9 @@ const plugin: EggPlugin = {
   //   enable: true,
   //   package: 'egg-view-nunjucks',
   // },
-  session: {
+  cors: {
     enable: true,
-    package: 'egg-session',
+    package: 'egg-cors',
   },
 };
 

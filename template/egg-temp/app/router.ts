@@ -7,4 +7,5 @@ export default (app: Application) => {
   router.get('/add', controller.home.add);
   router.get('/remove', controller.home.remove);
   router.get('/fetchPosts', controller.home.fetchPosts);
+  router.post('/signIn', controller.home.signIn);
 };

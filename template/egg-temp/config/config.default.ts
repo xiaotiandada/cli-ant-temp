@@ -10,6 +10,18 @@ export default (appInfo: EggAppInfo) => {
   // add your egg config in here
   config.middleware = [];
 
+  config.security = {
+    domainWhiteList: [ 'http://localhost:8080', 'http://127.0.0.1:8080', 'http://127.0.0.1', 'http://www.cookie123456.com' ],
+    csrf: {
+      enable: false,
+    },
+  };
+  exports.cors = {
+    origin: 'http://127.0.0.1:8080',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+    credentials: true,
+  };
+
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
