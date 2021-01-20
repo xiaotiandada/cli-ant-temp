@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from 'react-i18next';
 
 import { selectUser, initUser, setUser } from '../../store/userSlice';
 import logo from '../../logo.svg';
@@ -7,6 +8,8 @@ import logo from '../../logo.svg';
 const Home: React.FC = () => {
   const user: any = useSelector(selectUser)
   const dispatch = useDispatch()
+
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     dispatch(initUser())
@@ -23,6 +26,7 @@ const Home: React.FC = () => {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <h1>{t('swap')}</h1>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -36,6 +40,8 @@ const Home: React.FC = () => {
         </a>
         <br/>
         <button onClick={ handleClear }>clear</button>
+        <button onClick={ () => i18n.changeLanguage('en') }>en</button>
+        <button onClick={ () => i18n.changeLanguage('zh-CN') }>zh</button>
       </header>
     </div>
   );
