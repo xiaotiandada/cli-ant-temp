@@ -1,5 +1,7 @@
 import { Controller } from 'egg';
 import * as jwt from 'jwt-simple';
+import * as ms from 'ms';
+
 export default class HomeController extends Controller {
   public async index() {
     const { ctx } = this;
@@ -15,6 +17,7 @@ export default class HomeController extends Controller {
     const countCookie: any = ++count;
     ctx.cookies.set('count', countCookie, {
       sameSite: 'none',
+      maxAge: ms('7d'),
     });
     ctx.body = count;
   }
@@ -48,6 +51,7 @@ export default class HomeController extends Controller {
     const token = jwt.encode(payload, secret);
     ctx.cookies.set('access-token', token, {
       sameSite: 'none',
+      maxAge: ms('7d'),
     });
     ctx.body = {
       data: token,
