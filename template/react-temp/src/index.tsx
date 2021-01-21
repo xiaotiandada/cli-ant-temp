@@ -1,15 +1,19 @@
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
+
 import './i18n';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme'
 
 ReactDOM.render(
   <StrictMode>
-    <React.StrictMode>
+    <FixedGlobalStyle />
+    <ThemeProvider>
+      <ThemedGlobalStyle />
       <App />
-    </React.StrictMode>
+    </ThemeProvider>
   </StrictMode>,
   document.getElementById('root')
 );
