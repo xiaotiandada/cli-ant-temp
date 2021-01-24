@@ -21,6 +21,9 @@ const Home: React.FC = () => {
   const handleClear = () => {
     dispatch(setUser({}))
   }
+  const handleInit = () => {
+    dispatch(initUser())
+  }
 
   return (
     <div className="App">
@@ -39,9 +42,12 @@ const Home: React.FC = () => {
           Learn React
         </a>
         <br/>
-        <button onClick={ handleClear }>clear</button>
-        <button onClick={ () => i18n.changeLanguage('en') }>en</button>
-        <button onClick={ () => i18n.changeLanguage('zh-CN') }>zh</button>
+        <div>
+          <button onClick={ handleInit }>init</button>
+          <button onClick={ handleClear }>clear</button>
+          <button onClick={ () => i18n.changeLanguage('en') }>en</button>
+          <button onClick={ () => i18n.changeLanguage('zh-CN') }>zh</button>
+        </div>
       </header>
     </div>
   );

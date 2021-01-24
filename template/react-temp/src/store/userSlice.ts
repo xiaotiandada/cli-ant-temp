@@ -23,13 +23,14 @@ export const userSlice = createSlice({
 export const { setUser } = userSlice.actions
 
 // 初始化用户信息
-export const initUser = (): AppThunk => dispatch => {
+export const initUser = (): AppThunk => async dispatch => {
 
   const getUser = async () => {
     // const result: any = await getUserProfile()
     const result: any = {
       id: 0,
       username: 'username',
+      time: Date.now()
     }
     console.log('result', result)
     if (result.code === 0) {
