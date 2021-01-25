@@ -1,6 +1,8 @@
 {
-  "name": "temp",
+  "name": "{{ name }}",
   "version": "0.1.0",
+  "description": "{{ description }}",
+  "author": "{{ author }}",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
