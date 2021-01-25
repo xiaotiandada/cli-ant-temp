@@ -12,5 +12,27 @@ export default () => {
     },
   };
 
+  // https://eggjs.org/zh-cn/tutorials/mysql.html
+  exports.mysql = {
+    clients: {
+      db1: {
+        host: '',
+        port: '3306',
+        user: 'test_user',
+        password: 'test_password',
+        database: 'test',
+      },
+    },
+    // 所有数据库配置的默认值
+    default: {
+      multipleStatements: true,
+      charset: 'utf8mb4',
+    },
+    // 是否加载到 app 上，默认开启
+    app: true,
+    // 是否加载到 agent 上，默认关闭
+    agent: false,
+  };
+
   return config;
 };
