@@ -56,7 +56,7 @@ const Home: React.FC = () => {
         >
           Learn React
         </a>
-        <StyledText>{ storeThemeMode }</StyledText>
+        <StyledText>Theme Mode: { storeThemeMode }</StyledText>
         <br/>
         <div>
           <button onClick={ handleInit }>init</button>
