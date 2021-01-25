@@ -12,12 +12,12 @@ import {
 import { combineReducers } from "redux";
 
 import userSlice from "./userSlice";
+import otherSlice from "./otherSlice";
 
 const reducers = combineReducers({
-    user: userSlice
+    user: userSlice,
+    other: otherSlice
 });
-
-// const PERSISTED_KEYS: string[] = ['user']
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppThunk<ReturnType = void> = ThunkAction<
@@ -27,10 +27,12 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     Action<string>
 >
 
+const PERSISTED_KEYS: string[] = ['user']
 const persistConfig = {
     key: 'store',
     version: 1,
-    storage
+    storage,
+    whitelist: PERSISTED_KEYS // only navigation will be persisted
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

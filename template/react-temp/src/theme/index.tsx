@@ -6,9 +6,8 @@ import styled, {
   DefaultTheme
 } from 'styled-components'
 
+import useIsDarkMode from '../hooks/useThemeMode'
 import { Colors } from './styled'
-
-// import { useIsDarkMode } from '../state/user/hooks'
 
 const mediaWidthTemplates: any = []
 
@@ -97,7 +96,7 @@ export function theme(darkMode: boolean): DefaultTheme {
 }
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const darkMode = true
+  const darkMode = useIsDarkMode()
 
   const themeObject = useMemo(() => theme(darkMode), [darkMode])
 

@@ -1,19 +1,29 @@
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore } from 'redux-persist'
 
 import './i18n';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme'
+import { store } from './store/index';
+
+let persistor = persistStore(store);
 
 ReactDOM.render(
   <StrictMode>
     <FixedGlobalStyle />
-    <ThemeProvider>
-      <ThemedGlobalStyle />
-      <App />
-    </ThemeProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider>
+          <ThemedGlobalStyle />
+          <App />
+        </ThemeProvider>
+      </PersistGate>
+    </Provider>
   </StrictMode>,
   document.getElementById('root')
 );
