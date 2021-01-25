@@ -10,6 +10,14 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-cors',
   },
+  ratelimiter: {
+    enable: true,
+    package: 'egg-ratelimiter',
+  },
+  redis: {
+    enable: true,
+    package: 'egg-redis',
+  },
 };
 
 export default plugin;

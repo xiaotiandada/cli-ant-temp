@@ -3,7 +3,7 @@ import * as jwt from 'jwt-simple';
 import * as ms from 'ms';
 
 export default class HomeController extends Controller {
-  public async index() {
+  public async index(): Promise<any> {
     const { ctx } = this;
     ctx.body = await ctx.service.test.sayHi('egg');
   }

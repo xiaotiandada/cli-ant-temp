@@ -34,6 +34,21 @@ export default (appInfo: EggAppInfo) => {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
   };
 
+  // https://cnodejs.org/topic/5be8dcf82fed25406c25d805
+  config.ratelimiter = {
+    router: [
+      {
+        path: '/', // 限制路由路径 此规则不会匹配(index.html?id=1)[http://url/index.html?id=1]
+        max: 5000,
+        time: '1m', // 时间单位 s m h d y ...
+        message: {
+          code: -1,
+          message: 'Too Many Requests 7s/5',
+        }, // 自定义请求超限错误信息
+      },
+    ],
+  };
+
   // the return config will combines to EggAppConfig
   return {
     ...config,
