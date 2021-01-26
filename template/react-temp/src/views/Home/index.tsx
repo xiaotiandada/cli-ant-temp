@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 import { selectUser, selectMode, initUser, setUser, setMode } from '../../store/userSlice';
 import logo from '../../logo.svg';
+import { testCache, testCacheA } from '../../api/index'
 
 
 const StyledTitle = styled.h1`
@@ -26,7 +27,6 @@ const Home: React.FC = () => {
     dispatch(initUser())
   }, [ dispatch ])
 
-
   useEffect(() => {
     setTimeout(() => {
       console.log('useEffect user', user)
@@ -38,6 +38,26 @@ const Home: React.FC = () => {
   }
   const handleInit = () => {
     dispatch(initUser())
+  }
+
+  // test api request
+  const handleTestCache = async () => {
+    const res = await testCache({
+      pagesize: 20
+    })
+      console.log('data res', res)
+  }
+  const handleTestCache1 = async () => {
+    const res = await testCache({
+      pagesize: 30
+    })
+      console.log('data res 1', res)
+  }
+  const handleTestCacheA = async () => {
+    const res = await testCacheA({
+      pagesize: 30
+    })
+      console.log('data res 1', res)
   }
 
   return (
@@ -65,6 +85,11 @@ const Home: React.FC = () => {
           <button onClick={ () => i18n.changeLanguage('zh-CN') }>zh</button>
           <button onClick={ () => dispatch(setMode({ mode: 'defaultMode' })) }>Default Mode</button>
           <button onClick={ () => dispatch(setMode({ mode: 'darkMode' })) }>Dark Mode</button>
+        </div>
+        <div>
+          <button onClick={ handleTestCache }>Test Cache</button>
+          <button onClick={ handleTestCache1 }>Test Cache 1</button>
+          <button onClick={ handleTestCacheA }>Test No Cache</button>
         </div>
       </header>
     </div>

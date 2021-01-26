@@ -1,11 +1,26 @@
-import axios from 'axios'
+import axios, { AxiosAdapter, AxiosPromise } from 'axios'
+import { cacheAdapterEnhancer, ICacheLike } from 'axios-extensions';
+import LRUCache from 'lru-cache'
 
+const cache = new LRUCache({
+  maxAge: 1000 * 60,
+  max: 1000,
+}) as ICacheLike<AxiosPromise<any>>
+// (window as any).cache = cache
+
+const options = {
+  enabledByDefault: false,
+  cacheFlag: 'useCache',
+  defaultCache: cache
+}
 const client = axios.create({
   baseURL: '',
   timeout: 1000 * 30,
   headers: {
   },
   withCredentials: true,
+  // adapter: cacheAdapterEnhancer((axios as any).defaults.adapter)
+  adapter: cacheAdapterEnhancer(axios.defaults.adapter as AxiosAdapter, options)
 })
 
 client.interceptors.request.use(

@@ -8,7 +8,7 @@ interface UserState {
 
 const factoryState = (): UserState => ({
   user: Object.create(null), // 用户信息
-  mode: 'defaultMode', // 主题 darkMode
+  mode: 'defaultMode', // 主题 defaultMode darkMode
 })
 
 const initialState: UserState = factoryState()
