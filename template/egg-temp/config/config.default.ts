@@ -2,7 +2,7 @@ import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
-  const domainWhiteList = [ 'http://localhost:8080', 'http://127.0.0.1:8080' ];
+  const domainWhiteList = [ 'http://localhost:8080', 'http://127.0.0.1:8080', 'http://127.0.0.1:3000' ];
 
   // override config from framework / plugin
   // use for cookie sign key, should change to your own and keep security
@@ -18,6 +18,8 @@ export default (appInfo: EggAppInfo) => {
       enable: false,
     },
   };
+
+  config.proxy = true;
 
   config.cors = {
     origin: ctx => {
@@ -47,6 +49,13 @@ export default (appInfo: EggAppInfo) => {
         }, // 自定义请求超限错误信息
       },
     ],
+  };
+
+  config.static = {
+    // maxAge: 31536000,
+    prefix: '/static/',
+    maxAge: 86400,
+    // cacheControl: 'no-store',
   };
 
   // the return config will combines to EggAppConfig
