@@ -37,5 +37,7 @@ declare module 'egg' {
     ratelimiter?: EggPluginItem;
     redis?: EggPluginItem;
     mysql?: EggPluginItem;
+    xtransit?: EggPluginItem;
+    alinode?: EggPluginItem;
   }
 }

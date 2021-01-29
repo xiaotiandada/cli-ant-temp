@@ -22,6 +22,14 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-mysql',
   },
+  xtransit: {
+    enable: false,
+    package: 'egg-xtransit',
+  },
+  alinode: {
+    enable: false,
+    package: 'egg-alinode',
+  },
 };
 
 export default plugin;

@@ -1,4 +1,5 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
+import * as path from 'path';
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
@@ -56,6 +57,23 @@ export default (appInfo: EggAppInfo) => {
     prefix: '/static/',
     maxAge: 86400,
     // cacheControl: 'no-store',
+  };
+
+  config.logger = {
+    dir: path.join(__dirname, `../logs/${appInfo.name}`),
+  };
+
+  config.xtransit = {
+    server: 'ws://127.0.0.1:9090',
+    appId: 1,
+    appSecret: '',
+    logDir: '../xprofiler',
+  };
+  // https://help.aliyun.com/knowledge_detail/60907.html?spm=a2c4g.11186623.2.3.7a1b6175mU8EUS
+  config.alinode = {
+    server: 'wss://agentserver.node.aliyun.com:8080',
+    appid: '',
+    secret: '',
   };
 
   // the return config will combines to EggAppConfig
