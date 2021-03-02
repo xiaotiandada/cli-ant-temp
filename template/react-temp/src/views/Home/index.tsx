@@ -60,6 +60,11 @@ const Home: React.FC = () => {
       console.log('data res 1', res)
   }
 
+  function GenericBox({ children }: any) {
+    console.log('children', children)
+    return <div className="container">{children}</div>
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -78,6 +83,9 @@ const Home: React.FC = () => {
         </a>
         <StyledText>Theme Mode: { storeThemeMode }</StyledText>
         <br/>
+        <GenericBox>
+          <span>Hello</span> <span>World</span>
+        </GenericBox>
         <div>
           <button onClick={ handleInit }>init</button>
           <button onClick={ handleClear }>clear</button>
