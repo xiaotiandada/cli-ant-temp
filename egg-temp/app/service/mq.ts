@@ -35,6 +35,8 @@ export default class MdService extends Service {
     return 'success';
   }
   public async buy() {
+    // 也许应该在这里利用Redis 完成条件的再进入队列。。。
+    // 然后消费消息记录数据 排队写入防止爆库
     const { app } = this.ctx;
     const { ch } = app.rabbitmq;
     const queueName = 'buyQueue';
