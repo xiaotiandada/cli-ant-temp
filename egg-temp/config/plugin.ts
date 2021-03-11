@@ -30,6 +30,10 @@ const plugin: EggPlugin = {
     enable: false,
     package: 'egg-alinode',
   },
+  rabbitmq: {
+    enable: true,
+    package: '@eggplugin/rabbitmq',
+  },
 };
 
 export default plugin;

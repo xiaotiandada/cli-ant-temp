@@ -13,7 +13,7 @@ export default () => {
   };
 
   // https://eggjs.org/zh-cn/tutorials/mysql.html
-  exports.mysql = {
+  config.mysql = {
     clients: {
       db1: {
         host: '',

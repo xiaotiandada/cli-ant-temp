@@ -18,6 +18,7 @@ import 'egg-cors';
 import 'egg-ratelimiter';
 import 'egg-redis';
 import 'egg-mysql';
+import '@eggplugin/rabbitmq';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
   interface EggPlugin {
@@ -39,5 +40,6 @@ declare module 'egg' {
     mysql?: EggPluginItem;
     xtransit?: EggPluginItem;
     alinode?: EggPluginItem;
+    rabbitmq?: EggPluginItem;
   }
 }

@@ -21,6 +21,8 @@
     "clean": "ets clean"
   },
   "dependencies": {
+    "@eggplugin/rabbitmq": "^2.0.1",
+    "amqplib": "^0.7.1",
     "egg": "^2.6.1",
     "egg-alinode": "^2.0.1",
     "egg-cors": "^2.2.3",
