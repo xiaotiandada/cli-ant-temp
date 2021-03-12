@@ -31,8 +31,12 @@ const plugin: EggPlugin = {
     package: 'egg-alinode',
   },
   rabbitmq: {
-    enable: true,
+    enable: false,
     package: '@eggplugin/rabbitmq',
+  },
+  apollo: {
+    enable: false,
+    package: '@gaoding/egg-apollo-client',
   },
 };
 
