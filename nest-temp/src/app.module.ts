@@ -7,6 +7,12 @@ import { NoticeModule } from './notice/notice.module';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import config from './config/index';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Connection } from 'typeorm';
+import { UsersService } from './users/users.service';
+import { UsersController } from './users/users.controller';
+import { UsersModule } from './users/users.module';
+import { User } from './users/user.entity';
 
 @Module({
   imports: [
@@ -15,9 +21,22 @@ import config from './config/index';
       load: [config],
     }),
     HttpModule,
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'xiaotian',
+      database: 'nest-temp',
+      entities: [User],
+      synchronize: true,
+    }),
     NoticeModule,
+    UsersModule,
   ],
   controllers: [AppController, NoticeController],
   providers: [AppService, NoticeService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private connection: Connection) {}
+}
