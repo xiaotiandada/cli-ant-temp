@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NoticeService } from './notice/notice.service';
@@ -13,6 +13,8 @@ import { UsersService } from './users/users.service';
 import { UsersController } from './users/users.controller';
 import { UsersModule } from './users/users.module';
 import { User } from './users/user.entity';
+import { CurdModule } from './curd/curd.module';
+import { LoggerMiddleware } from './common/middleware/logger.middleware';
 
 @Module({
   imports: [
@@ -33,10 +35,14 @@ import { User } from './users/user.entity';
     }),
     NoticeModule,
     UsersModule,
+    CurdModule,
   ],
   controllers: [AppController, NoticeController],
   providers: [AppService, NoticeService],
 })
-export class AppModule {
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('curd');
+  }
   constructor(private connection: Connection) {}
 }
