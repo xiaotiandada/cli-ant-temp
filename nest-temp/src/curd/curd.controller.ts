@@ -11,8 +11,10 @@ import {
   ParseIntPipe,
   UseInterceptors,
   UseGuards,
+  Logger,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { Cron } from '@nestjs/schedule';
 import { CurdService } from './curd.service';
 import { CreateCurdDto } from './dto/create-curd.dto';
 import { UpdateCurdDto } from './dto/update-curd.dto';
@@ -24,6 +26,12 @@ import { User } from '../common/decorators/user.decorator';
 @ApiTags('CURD')
 export class CurdController {
   constructor(private readonly curdService: CurdService) {}
+  private readonly logger = new Logger(CurdController.name);
+
+  // @Cron('45 * * * * *')
+  handleCron() {
+    this.logger.debug('Called when the current second is 45');
+  }
 
   @Get('httperror')
   errorInfo() {

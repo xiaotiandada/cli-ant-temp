@@ -1,4 +1,10 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import {
+  Module,
+  NestModule,
+  MiddlewareConsumer,
+  CacheModule,
+} from '@nestjs/common';
+import { ScheduleModule } from '@nestjs/schedule';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NoticeService } from './notice/notice.service';
@@ -33,6 +39,8 @@ import { LoggerMiddleware } from './common/middleware/logger.middleware';
       entities: [User],
       synchronize: true,
     }),
+    CacheModule.register(),
+    ScheduleModule.forRoot(),
     NoticeModule,
     UsersModule,
     CurdModule,
