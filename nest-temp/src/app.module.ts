@@ -21,6 +21,7 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/user.entity';
 import { CurdModule } from './curd/curd.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
+import { ScheduleIndex } from './schedule/index';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { LoggerMiddleware } from './common/middleware/logger.middleware';
     NoticeModule,
     UsersModule,
     CurdModule,
+    ScheduleIndex,
   ],
   controllers: [AppController, NoticeController],
   providers: [AppService, NoticeService],
