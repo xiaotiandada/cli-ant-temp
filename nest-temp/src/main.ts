@@ -2,8 +2,10 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
-// import * as compression from 'compression';
-// import * as session from 'express-session';
+import * as compression from 'compression';
+import * as session from 'express-session';
+import * as csurf from 'csurf';
+import * as helmet from 'helmet';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
@@ -28,6 +30,8 @@ async function bootstrap() {
 
   app.use(cookieParser());
   // app.use(compression());
+  // app.use(csurf());
+  app.use(helmet());
 
   // https://docs.nestjs.com/techniques/session
   // app.use(
@@ -41,6 +45,8 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
+
+  app.enableCors();
 
   await app.listen(7980);
 }

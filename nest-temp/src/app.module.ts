@@ -17,6 +17,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { BullModule } from '@nestjs/bull';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { UsersService } from './users/users.service';
 import { UsersController } from './users/users.controller';
 import { UsersModule } from './users/users.module';
@@ -52,6 +53,10 @@ import { FileUploadModule } from './file-upload/file-upload.module';
     CacheModule.register(),
     ScheduleModule.forRoot(),
     EventEmitterModule.forRoot(),
+    // ThrottlerModule.forRoot({
+    //   ttl: 60,
+    //   limit: 10,
+    // }),
     NoticeModule,
     UsersModule,
     CurdModule,
