@@ -8,11 +8,17 @@ import {
   Delete,
   HttpException,
   HttpStatus,
+  ParseIntPipe,
+  UseInterceptors,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CurdService } from './curd.service';
 import { CreateCurdDto } from './dto/create-curd.dto';
 import { UpdateCurdDto } from './dto/update-curd.dto';
+import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
+import { RolesGuard } from '../common/guards/roles.guard';
+import { User } from '../common/decorators/user.decorator';
 
 @Controller('curd')
 @ApiTags('CURD')
@@ -28,6 +34,14 @@ export class CurdController {
       },
       HttpStatus.FORBIDDEN,
     );
+  }
+
+  @Get(':number')
+  @UseInterceptors(LoggingInterceptor)
+  @UseGuards(RolesGuard)
+  number(@Param('number', ParseIntPipe) number: number, @User() user: any) {
+    console.log('user', user);
+    return `number: ${number}, ${typeof number}`;
   }
 
   @Post()
