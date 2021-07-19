@@ -15,6 +15,8 @@ import { ConfigModule } from '@nestjs/config';
 import config from './config/index';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
+import { BullModule } from '@nestjs/bull';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { UsersService } from './users/users.service';
 import { UsersController } from './users/users.controller';
 import { UsersModule } from './users/users.module';
@@ -22,6 +24,7 @@ import { User } from './users/user.entity';
 import { CurdModule } from './curd/curd.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { ScheduleIndex } from './schedule/index';
+import { FileUploadModule } from './file-upload/file-upload.module';
 
 @Module({
   imports: [
@@ -40,12 +43,20 @@ import { ScheduleIndex } from './schedule/index';
       entities: [User],
       synchronize: true,
     }),
+    // BullModule.forRoot({
+    //   redis: {
+    //     host: 'localhost',
+    //     port: 6379,
+    //   },
+    // }),
     CacheModule.register(),
     ScheduleModule.forRoot(),
+    EventEmitterModule.forRoot(),
     NoticeModule,
     UsersModule,
     CurdModule,
     ScheduleIndex,
+    FileUploadModule,
   ],
   controllers: [AppController, NoticeController],
   providers: [AppService, NoticeService],

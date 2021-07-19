@@ -1,4 +1,11 @@
-import { Controller, Get, HostParam, Ip, Redirect } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HostParam,
+  Ip,
+  Redirect,
+  Render,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 
 interface HelloProps {
@@ -28,6 +35,12 @@ export class AppController {
   @Get('ab*cd')
   findAll() {
     return 'This route uses a wildcard';
+  }
+
+  @Get('hbs')
+  @Render('index')
+  root() {
+    return { message: 'Hello world!' };
   }
 
   @Get('redirect')
