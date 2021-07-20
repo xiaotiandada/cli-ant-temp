@@ -27,6 +27,7 @@ import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { ScheduleIndex } from './schedule/index';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { AuthModule } from './auth/auth.module';
+import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
   imports: [
@@ -45,6 +46,10 @@ import { AuthModule } from './auth/auth.module';
       entities: [User],
       synchronize: true,
     }),
+    // GraphQLModule.forRoot({
+    //   debug: false,
+    //   autoSchemaFile: true,
+    // }),
     // BullModule.forRoot({
     //   redis: {
     //     host: 'localhost',
