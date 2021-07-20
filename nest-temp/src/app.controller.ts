@@ -5,8 +5,16 @@ import {
   Ip,
   Redirect,
   Render,
+  UseGuards,
+  Request,
+  Post,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiBody, ApiHeader } from '@nestjs/swagger';
 import { AppService } from './app.service';
+import { UsersDTO } from './users/dto/users.dto';
+import { LocalAuthGuard } from './auth/local-auth.guard';
+import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { AuthService } from './auth/auth.service';
 
 interface HelloProps {
   code: number;
@@ -18,7 +26,24 @@ interface HelloProps {
 @Controller()
 // @Controller({ host: 'localhost' })
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private authService: AuthService,
+  ) {}
+
+  @UseGuards(LocalAuthGuard)
+  @Post('auth/login')
+  @ApiBody({ type: UsersDTO })
+  async login(@Request() req) {
+    return this.authService.login(req.user);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  @ApiBearerAuth('access-token')
+  getProfile(@Request() req) {
+    return req.user;
+  }
 
   @Get()
   getHello(@Ip() ip: string, @HostParam() hosts: string): HelloProps {

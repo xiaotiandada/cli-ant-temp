@@ -26,6 +26,7 @@ import { CurdModule } from './curd/curd.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { ScheduleIndex } from './schedule/index';
 import { FileUploadModule } from './file-upload/file-upload.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -62,6 +63,7 @@ import { FileUploadModule } from './file-upload/file-upload.module';
     CurdModule,
     ScheduleIndex,
     FileUploadModule,
+    AuthModule,
   ],
   controllers: [AppController, NoticeController],
   providers: [AppService, NoticeService],

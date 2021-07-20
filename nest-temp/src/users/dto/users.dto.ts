@@ -8,7 +8,7 @@ export class UsersDTO {
     description: 'name',
     example: 'xiaotian',
   })
-  name: string;
+  username: string;
   @ApiProperty({
     required: true,
     description: 'email',
