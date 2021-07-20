@@ -5,11 +5,6 @@ import {
   CacheModule,
 } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { NoticeService } from './notice/notice.service';
-import { NoticeController } from './notice/notice.controller';
-import { NoticeModule } from './notice/notice.module';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import config from './config/index';
@@ -18,6 +13,8 @@ import { Connection } from 'typeorm';
 import { BullModule } from '@nestjs/bull';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { GraphQLModule } from '@nestjs/graphql';
+
 import { UsersService } from './users/users.service';
 import { UsersController } from './users/users.controller';
 import { UsersModule } from './users/users.module';
@@ -27,8 +24,11 @@ import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { ScheduleIndex } from './schedule/index';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { AuthModule } from './auth/auth.module';
-import { GraphQLModule } from '@nestjs/graphql';
-
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { NoticeService } from './notice/notice.service';
+import { NoticeController } from './notice/notice.controller';
+import { NoticeModule } from './notice/notice.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
