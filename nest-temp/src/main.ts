@@ -18,12 +18,10 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()
-    .setTitle('DingTalkRobot')
-    .setDescription(
-      'DingTalk Robot, 当前机器人关键词 [ 提醒、警告、错误、成功 ]',
-    )
-    .setVersion('1.1')
-    .addTag('dingTalk')
+    .setTitle('Nest Doc')
+    .setDescription('nestjs doc')
+    .setVersion('1.0')
+    .addTag('Doc')
     .addBearerAuth(
       {
         type: 'http',
