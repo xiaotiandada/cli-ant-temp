@@ -10,7 +10,6 @@ import TokenListSelect from '../../components/TokenListSelect/index'
 import { StandardTokenProfile } from '../../typing/TokenList'
 import { useERC20Single } from '../../hooks/useERC20Single';
 
-
 const { Paragraph, Title, Text } = Typography;
 
 const Account: React.FC = () => {
