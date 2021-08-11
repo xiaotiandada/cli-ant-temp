@@ -10,7 +10,7 @@ import useTokenList from '../../hooks/useTokenList';
 import { StandardTokenProfile } from '../../typing/TokenList';
 import { isEmpty } from 'lodash';
 import { shortedWalletAccount, balanceDecimal } from '../../utils/index';
-// import { useBalances } from '../../hooks/useBalances';
+import { useBalances } from '../../hooks/useBalances';
 
 interface Props {
   setCurrentToken: (token: StandardTokenProfile) => void;
@@ -39,8 +39,7 @@ const TokenListSelect = ({
     return tokenListCurrent.map(i => i.address);
   }, [tokenListCurrent]);
 
-  // const { balanceOf } = useBalances(tokenListAddress);
-  const balanceOf = (val: string) => '0'
+  const { balanceOf } = useBalances(tokenListAddress);
 
   const handleOk = () => {
     setIsModalVisible(false);
