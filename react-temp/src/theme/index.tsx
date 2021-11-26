@@ -9,7 +9,7 @@ import styled, {
 import useIsDarkMode from '../hooks/useThemeMode'
 import { Colors } from './styled'
 
-const mediaWidthTemplates: any[] = []
+const mediaWidthTemplates: any = []
 
 const white = '#FFFFFF'
 const black = '#000000'
