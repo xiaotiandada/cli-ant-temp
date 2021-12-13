@@ -2,8 +2,6 @@ import Link from 'next/link'
 import Layout from '../components/Layout'
 import { useRouter } from 'next/router'
 
-
-
 const IndexPage = () => {
   const router = useRouter()
 
@@ -16,14 +14,14 @@ const IndexPage = () => {
         </Link>
       </p>
   
-    <Link href={`/posts/pre-rendering`}>
-      <a>pre-rendering</a>
-    </Link>
-    <Link href={`/posts/ssg-ssr`}>
-      <a>ssg-ssr</a>
-    </Link>
+      <Link href={'/posts/pre-rendering'}>
+        <a>pre-rendering</a>
+      </Link>
+      <Link href={'/posts/ssg-ssr'}>
+        <a>ssg-ssr</a>
+      </Link>
 
-    <span onClick={() => router.push(`/pid/${Date.now()}`)}>Click here to read more</span>
+      <span onClick={() => router.push(`/pid/${Date.now()}`)}>Click here to read more</span>
     
     </Layout>
   )
